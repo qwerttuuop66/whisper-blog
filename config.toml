@@ -1,13 +1,25 @@
 baseURL = "/"
 languageCode = "en-us"
-title = "Hugo Whisper Theme"
+title = "Liu - blog"
 themesDir = "themes"
-theme = "hugo-whisper-theme"
+theme = "ananke"
 
 pygmentsCodeFences = true
 pygmentsCodefencesGuessSyntax = true
 pygmentsUseClasses = true
-
+DefaultContentLanguage = "en"
+Paginate = 3 # this is set low for demonstrating with dummy content. Set to a higher number
+enableRobotsTXT = true
+[languages]
+  [languages.en]
+    title = "liuliu's live blog"
+    weight = 1
+    contentDir = "content/en"
+    # languageDirection = 'rtl' for Right-To-Left languages
+  [languages.cn]
+    title = "liuliu's live blog"
+    weight = 2
+    contentDir = "content/cn"
 [module]
   [module.hugoVersion]
     extended = true
@@ -28,37 +40,23 @@ summaryLength = 30
     weight = 2
 [[menu.main]]
     name = "Technique"
-    url = "/docs/"
+    url = "/Technique/"
     weight = 3
 [[menu.main]]
     name = "Movie"
-    url = "/docs/"
+    url = "/movie/"
     weight = 4
-[[menu.main]]
-    name = "posts"
-    url = "/posts/"
-    weight = 4
+
 [params]
+  favicon = "static/my_icon.ico"
   google_analytics_id=""
-  homepage_button_link = '/docs'
-  homepage_button_text = "Let's start our journey"
-  homepage_intro = 'Whisper is a documentation theme built with Hugo. The design and functionality is intentionally minimal.'
-  # homepage_image = '/images/share.jpg'
 
-  ## You can enable to add anchor links to header elements
-  # enable_anchor_link = true
+  text_color = ""
+  author = "liuliu"
 
-  [params.homepage_meta_tags]
-    meta_description = "Hugo Whisper is a documentation theme built with Hugo."
-    meta_og_title = "Hugo Whisper Theme"
-    meta_og_type = "website"
-    meta_og_url = "https://hugo-whisper.netlify.app"
-    meta_og_image = "https://raw.githubusercontent.com/JugglerX/hugo-whisper-theme/master/images/tn.png"
-    meta_og_description = " Liuliu's live Blog is a platform to share good article,techniques, arts, films with you!"
-    meta_twitter_card = "summary"
-    meta_twitter_site = "@zerostaticio"
-    meta_twitter_creator = "@zerostaticio"
+  site_logo = ""
+  recent_posts_number = 3
 
-  [params.logo]
-      mobile = "/images/logo-mobile.svg"
-      standard  = "/images/logo.svg"
+[[params.ananke_socials]]
+name = "github"
+url = "https://github.com/qwerttuuop66/"
