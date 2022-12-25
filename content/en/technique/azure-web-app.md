@@ -1,90 +1,88 @@
 ---
-title: "使用azure static web apps 搭建静态博客"
+title: "Build static blogs with Azure Static Web Apps"
 date: 2022-12-20T19:27:37+10:00
 draft: false
 weight: 4
 featured_image: "/images/original-url-page.png"
 ---
 
-直接与 GitHub 代码仓连结，当代码仓内修改完成后 pull request 可实现自动更新网站内容；支持 https；对博客的网页设计有全方位的掌控。但此方法需要使用 github 部署网页，需要自己写 html，css，JavaScript 代码，此方法并不适合零代码基础的小白来搭建自己的博客
+> Prerequisite: You need to use GitHub to deploy web pages, you need to write HTML, CSS, JavaScript code yourself, this method is not suitable for zero-code basic whites to build their own blogs
+> Advantages of this method: directly linked to the GitHub repository, when the changes in the repository are completed, the pull request can automatically update the website content; Support for HTTPS; Have complete control over the web design of your blog.
 
  <!--more-->
 
-> 前提：需要使用 github 部署网页，需要自己写 html，css，JavaScript 代码，此方法并不适合零代码基础的小白来搭建自己的博客
-> 此方法的优势：直接与 GitHub 代码仓连结，当代码仓内修改完成后 pull request 可实现自动更新网站内容；支持 https；对博客的网页设计有全方位的掌控。
+### The first step is to upload your own blog content code
 
-### 第一步，上传自己的博客内容代码
+1. Upload your own code in GitHub, take this article as an example, upload to the master branch of the live-blog2 repository, and create another branch named "demo", the reason for creating another branch will be explained in the fourth step.
 
-1. 在 github 中上传自己的代码，以本文为例，上传至 live-blog2 代码仓的 master branch，同时 create 另一个名为“demo”的 branch，之所以要 create 另一个 branch 的原因会在第四步骤做解释。
+### The second step is to deploy the website with Azure Static Web Apps
 
-### 第二步，利用 azure static web apps 部署网站
-
-1. 登陆页面：https://portal.azure.com -> 使用自己的微软账号灯登陆后，选择订阅方式：free trail （需要有实体信用卡验证身份）或是自费（需要有实体信用卡或是借记卡）；或者通过https://azure.microsoft.com/en-us/free/students/ ->选择 Azure for Students 登陆， Azure for Students 和 free trail 两者都可以可获得 200 美元的 Azure 产品和服务免费额度，以及 12 个月的热门免费服务
-   （github 提供给在校学生免费的资源库中包含了 Azure for Students 的学生包，如何获取）
-2. 新建资源 (create resource)-> 静态 Web 应用（static web apps）
-3. 填写表单
+1. Landing page: https://portal.azure.com -> After logging in with your own Microsoft account light, choose the subscription method: free trail (physical credit card verification is required) or self-pay (physical credit card or debit card is required); Or sign in with Azure for Students by https://azure.microsoft.com/en-us/free/students/->, and both Azure for Students and free trail get $200 in free credits for Azure products and services, as well as 12 months of popular free services
+   (GitHub provides students with free resource libraries for current students that contain the Azure for Students student pack, how to get it)
+2. Create Resource - > Static Web Apps
+3. Fill out the form
 
    - ![选择自己的订阅方式](https://i.postimg.cc/mgt4QHSp/azure-static-web-app1.png "subscribe01")
-   - subsription: 选择自己的订阅方式
-     free trail 或是 Purchase Options（自费） 或是 Azure for Students
-   - resouce group：可以是之前建立的资源组，可以新建一个资源组
-   - name：给自己的 app 取一个名字
+   - subsription: Choose how you want to subscribe
+     Free trail or Purchase Options or Azure for Students
+   - resouce group：You can create a resource group that you created earlier, or you can create a new resource group
+   - name：Give your app a name
    - hosting plan：a) free, b) standard
-     对于只是搭建博客来说，free 计划足够用
-     两者的区别是，standard 可以在自己的网页中添加用户的身份验证功能（Custom authentication），以及私有终结点（private endpoint，可以使用私有 IP 访问本地资源例如数据库等，而非通过公网 ip 用 internet 访问资源）
+     For just building a blog, the free plan is sufficient
+     The difference between the two is that standard can add user authentication (custom authentication) to its web pages, as well as private endpoints (which can use private IPs to access local resources such as databases, etc., instead of accessing resources over the Internet through public IPs)
      ![选择自己的订阅方式](https://i.postimg.cc/hjbRSbSv/azure-static-web-app2.png "subscribe02")
-   - function api：选择服务器所在地区名称，优先选择离自己近的地方
-   - deployment detail：本文以 github 作为部署方式，选择自己的 GitHub 账号，代码仓（repository），以及分支（branch）
+   - function api：Select the name of the region where the server is located, and prefer a location close to you
+   - deployment detail：This article uses GitHub as the deployment method, and chooses your own GitHub account, repository, and branch
    - ![选择自己的订阅方式](https://i.postimg.cc/50fkmcV9/azure-static-web-app3.png "subscribe03")
 
    - build details：
-     build presets：选择自己网站的搭建框架，本文以自己写的 html，css，JavaScript 为例，选择“Custom”
-     app location，搭建的代码在代码仓的所在位置，如果在根目录下，该空格填写“/”
-     api location 和 output location 默认不填写
-   - review+create：点击创建即可
+     build presets：Choose your own website building framework, this article takes the html, CSS, JavaScript written by yourself as an example, and selects "Custom"
+     app location，The built code is in the location of the code warehouse, if it is in the root directory, the space is filled with "/"
+     API location and output location are not filled in by default
+   - review+create：Click review + Create
 
-4. 创建完成之后会有如下所示界面，点击 browse，可预览搭建好的网站
+4. After the creation is completed, there will be the following interface, click browse, you can preview the built website
    - ![界面](https://i.postimg.cc/qR7xRprK/azure-static-web-app4.png "subscribe04")
 
-### 第三步，修改域名
+### Step 3: Modify the domain name
 
-> URL 一栏会显示自动生成的网址，例如本文中的初始网址为“https://happy-bush-0d4cdbc00.2.azurestaticapps.net”，但本文添加了“custom domain”绑定了自己的域名，具体操作如下
+> The URL column will display the auto-generated URL, for example, the initial URL in this article is "https://happy-bush-0d4cdbc00.2.azurestaticapps.net", but this article adds "custom domain" to bind your own domain name, the specific operation is as follows
 
-1. 购买一个自己的域名，本文通过 GitHub 学生包中 namecheap.com 提供的免费域名资格（如何获取？）
-2. namecheap 登陆账号后，在"Domain List"菜单栏找到自己的域名选择“manage”，点击“Advanced DNS”，增加一个新的“CNAME record”
+1. Buy a domain of your own, this article is eligible for a free domain through namecheap.com in the GitHub Student Pack (how do I get it?) ）
+2. namecheap After logging in to your account, find your domain name in the "Domain List" menu bar, select "manage", click "Advanced DNS", and add a new "CNAME record"
    ![namecheap](https://i.postimg.cc/przhXCBm/namecheap1.png "namecheap1")
    ![namecheap](https://i.postimg.cc/yd9YFd35/namecheap.png "namecheap2")
    ![namecheap](https://i.postimg.cc/fRrwpXxp/namecheap2.png "namecheap3")
 
-   - host 为主机域名，可以是“www”，或是自己命名的其他单词如本文中的“blog2”
-   - value 为初始网址除去“https://”后的结果“green-bay-076566700.2.azurestaticapps.net”，TTL 可以理解为设定网页的最长加载时间，本文设定的是 1min。
+   - host is the host domain name, which can be "www", or other words named by yourself, such as "blog2" in this article
+   - value is the result "green-bay-076566700.2.azurestaticapps.net" after removing the "https://" from the initial URL, TTL can be understood as setting the maximum load time of the web page, this article sets 1min.
 
-3. 点击下图中“custom domain”，点击添加按钮“add”，有两个选项：“Azure DNS”和“other DNS”，本文中使用的是 namecheap 提供的 DNS，因此点击第二个。
+3. Click "custom domain" in the figure below, click the add button "add", there are two options: "Azure DNS" and "other DNS", this article uses the DNS provided by namecheap, so click the second one.
    ![namecheap](https://i.postimg.cc/FzWqzbsQ/domain-DNS.png "domain")
 
-4. 在弹出的表单中填写“domain name”，由于在 namecheap 中添加的主机域名为“blog2”，购买的 subdomain 为“liuliuwu.me”，因此在该空可填写为“blog2.liuliuwu.me”，下一步点击 add，等待认证（该认证过程需要关闭网络代理 VPN 等服务，可能有延迟，如果显示验证失败，可以多等十几分钟后重复 第 4 步骤重新验证）
+4. Fill in the pop-up form with "domain name", because the host domain name added in namecheap is "blog2", and the purchased subdomain is "liuliuwu.me", so the blank can be filled in as "blog2.liuliuwu.me", click add in the next step, wait for authentication (the authentication process needs to turn off services such as network proxy VPN, there may be a delay, if the verification fails, You can wait an extra ten minutes and repeat Step 4 to reverify)
    ![namecheap](https://i.postimg.cc/MTh5FsTH/domain1.png "domain")
    ![namecheap](https://i.postimg.cc/PrKZL3jD/domain-DNS2.png "domain")
 
-5. 证成功后，在“custom domain”页面显示了两条记录
+5. After the certificate is successful, two records are displayed on the Custom Domain page
    ![namecheap](https://i.postimg.cc/PrKZL3jD/domain-DNS2.png "domain")
 
-6. 在网页中输入“https://blog2.liuliuwu.me”，验证绑定域名成功
+6. Enter https://blog2.liuliuwu.me on the web page to verify that the domain name is bound
 
-### 第四步，更新网页内容
+### Step 4: Update the web content
 
-> 由于使用 static web apps 做网站部署时，会自动在 live-blog2 的 github 代码仓中，新建.github/workfolw/xxxx.yml 文件，而本地的 live-blog2 文件夹内，并不包含这个文件，如果直接对修改后的文件在终端使用 git push，live-blog2 的 github 代码仓中的.github/workfolw/xxxx.yml 文件将会消失，而该文件是将 github 与 azure 的工作桥梁，消失后则无法实现自动更新网站内容。
+> Since when using static web apps for website deployment, it will automatically create a new .github/workfolw/xxxx.yml file in the github repository of live-blog2, and the local live-blog2 folder does not contain this file, if you directly use git push for the modified file in the terminal, .github/ in the github code repository of live-blog2 The workfolw/xxxx.yml file, which is a working bridge between GitHub and Azure, disappears, and automatically updates website content will not be possible.
 
-1. 解决办法：命令行中键入“git pull” ，将 remote 仓库同步更新到本地
+1. solution: Type "git pull" on the command line to synchronize the remote repository to the local sync
 
    ```
    git pull
    ```
 
-2. 修改网页内容
+2. Modify the content of the page
    ![html](https://i.postimg.cc/4y7rmJB3/change-master.png)
 
-3. “git push”将 commit 之后的文件上传至 master 分支中
+3. "git push" uploads the file after the commit to the master branch
 
    ```
    git add index.html
@@ -92,8 +90,8 @@ featured_image: "/images/original-url-page.png"
    git push -f blog2 master
    ```
 
-4. 通过 github action 看到自动更新进程
+4. See the auto-update process through GitHub Action
    ![namecheap](https://i.postimg.cc/htTQVTfL/master-github-action.png "domain")
 
-5. 验证网页
+5. Verify the web page（reload the page）
    ![网页](https://i.postimg.cc/0y0mL7P8/test-master.png "blog page")
