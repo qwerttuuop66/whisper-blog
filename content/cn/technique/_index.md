@@ -1,10 +1,10 @@
 ---
-title: "Technique"
+title: "技术/技巧"
 date: 2022-12-20T15:14:39+10:00
 weight: 1
 featured_image: "/images/code.jpg"
 ---
 
-## Sharing Good technique
+## 分享好的技术/技巧
 
-about what i have learnt
+有关最近我所学的

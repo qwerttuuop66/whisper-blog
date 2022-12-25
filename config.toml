@@ -4,9 +4,7 @@ title = "Liu - blog"
 themesDir = "themes"
 theme = "ananke"
 
-pygmentsCodeFences = true
-pygmentsCodefencesGuessSyntax = true
-pygmentsUseClasses = true
+SectionPagesMenu = "main"
 DefaultContentLanguage = "en"
 Paginate = 3 # this is set low for demonstrating with dummy content. Set to a higher number
 enableRobotsTXT = true
@@ -15,7 +13,7 @@ enableRobotsTXT = true
     title = "liuliu's live blog"
     weight = 1
     contentDir = "content/en"
-    # languageDirection = 'rtl' for Right-To-Left languages
+    #languageDirection = 'rtl' #for Right-To-Left languages
   [languages.cn]
     title = "liuliu's live blog"
     weight = 2
@@ -29,23 +27,7 @@ enableRobotsTXT = true
 # See https://gohugo.io/content-management/summaries/
 summaryLength = 30
 
-[[menu.main]]
-    name = "Home"
-    url = "/"
-    weight = 1
 
-[[menu.main]]
-    name = "Article"
-    url = "/docs/"
-    weight = 2
-[[menu.main]]
-    name = "Technique"
-    url = "/Technique/"
-    weight = 3
-[[menu.main]]
-    name = "Movie"
-    url = "/movie/"
-    weight = 4
 
 [params]
   favicon = "static/my_icon.ico"

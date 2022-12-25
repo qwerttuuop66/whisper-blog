@@ -1,14 +1,12 @@
 ---
-title: Contact
-featured_image: ''
+title: 交流
+featured_image: ""
 omit_header_text: true
-description: We'd love to hear from you
+description: 期待您的来信
 type: page
 menu: main
-
 ---
 
+如果您对我的博客站感兴趣，欢迎发送您的邮箱和信息与我交流~
 
-This is an example of a custom shortcode that you can put right into your content. You will need to add a form action to the the shortcode to make it work. Check out [Formspree](https://formspree.io/) for a simple, free form service. 
-
-{{< form-contact action="https://example.com"  >}}
+{{< form-contact action="https://formspree.io/f/mgebwpnk"  >}}
