@@ -30,7 +30,7 @@ summaryLength = 30
 
 
 [params]
-  favicon = "static/my_icon.ico"
+  favicon = "my_icon.ico"
   google_analytics_id=""
 
   text_color = ""
