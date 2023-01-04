@@ -6,10 +6,12 @@ weight: 4
 featured_image: "/images/original-url-page.png"
 ---
 
-> 前提：需要使用 github 部署网页，需要自己写 html，css，JavaScript 代码，此方法并不适合零代码基础的小白来搭建自己的博客
-> 此方法的优势：直接与 GitHub 代码仓连结，当代码仓内修改完成后 pull request 可实现自动更新网站内容；支持 https；对博客的网页设计有全方位的掌控。
+![网页](https://i.postimg.cc/0y0mL7P8/test-master.png "blog page")
 
  <!--more-->
+
+> 前提：需要使用 github 部署网页，需要自己写 html，css，JavaScript 代码，此方法并不适合零代码基础的小白来搭建自己的博客
+> 此方法的优势：直接与 GitHub 代码仓连结，当代码仓内修改完成后 pull request 可实现自动更新网站内容；支持 https；对博客的网页设计有全方位的掌控。
 
 ### 第一步，上传自己的博客内容代码
 
@@ -30,7 +32,9 @@ featured_image: "/images/original-url-page.png"
    - hosting plan：a) free, b) standard
      对于只是搭建博客来说，free 计划足够用
      两者的区别是，standard 可以在自己的网页中添加用户的身份验证功能（Custom authentication），以及私有终结点（private endpoint，可以使用私有 IP 访问本地资源例如数据库等，而非通过公网 ip 用 internet 访问资源）
+
      ![选择自己的订阅方式](https://i.postimg.cc/hjbRSbSv/azure-static-web-app2.png "subscribe02")
+
    - function api：选择服务器所在地区名称，优先选择离自己近的地方
    - deployment detail：本文以 github 作为部署方式，选择自己的 GitHub 账号，代码仓（repository），以及分支（branch）
    - ![选择自己的订阅方式](https://i.postimg.cc/50fkmcV9/azure-static-web-app3.png "subscribe03")
@@ -55,6 +59,7 @@ featured_image: "/images/original-url-page.png"
 
 1. 购买一个自己的域名，本文通过 GitHub 学生包中 namecheap.com 提供的免费域名资格（如何获取？）
 2. namecheap 登陆账号后，在"Domain List"菜单栏找到自己的域名选择“manage”，点击“Advanced DNS”，增加一个新的“CNAME record”
+
    ![namecheap](https://i.postimg.cc/przhXCBm/namecheap1.png "namecheap1")
 
    ![namecheap](https://i.postimg.cc/yd9YFd35/namecheap.png "namecheap2")
@@ -69,6 +74,7 @@ featured_image: "/images/original-url-page.png"
    ![namecheap](https://i.postimg.cc/FzWqzbsQ/domain-DNS.png "domain")
 
 4. 在弹出的表单中填写“domain name”，由于在 namecheap 中添加的主机域名为“blog2”，购买的 subdomain 为“liuliuwu.me”，因此在该空可填写为“blog2.liuliuwu.me”，下一步点击 add，等待认证（该认证过程需要关闭网络代理 VPN 等服务，可能有延迟，如果显示验证失败，可以多等十几分钟后重复 第 4 步骤重新验证）
+
    ![namecheap](https://i.postimg.cc/MTh5FsTH/domain1.png "domain")
 
    ![namecheap](https://i.postimg.cc/PrKZL3jD/domain-DNS2.png "domain")
@@ -90,6 +96,7 @@ featured_image: "/images/original-url-page.png"
    ```
 
 2. 修改网页内容
+
    ![html](https://i.postimg.cc/4y7rmJB3/change-master.png)
 
 3. “git push”将 commit 之后的文件上传至 master 分支中
@@ -101,7 +108,9 @@ featured_image: "/images/original-url-page.png"
    ```
 
 4. 通过 github action 看到自动更新进程
+
    ![namecheap](https://i.postimg.cc/htTQVTfL/master-github-action.png "domain")
 
 5. 验证网页
+
    ![网页](https://i.postimg.cc/0y0mL7P8/test-master.png "blog page")
